@@ -27,4 +27,14 @@ unsigned int verifica_I(char romano[]);
 	* aparecerá uma mensagem de erro*/
 unsigned int verifica_V(char romano[]);
 
+/*Função que verifica se o algarismo romano 'X' está correto
+	* levando em consideração: IX, X, XI, XII, XIII, XIV
+	* XVI, XVII, XVIII, XIX, XX, ....
+	* caso as alternativas seja diferentes das apresentada
+	* aparecerá uma mensagem de erro
+	* recebe como paramentro além do vetor
+	* uma variavel inteira*/
+unsigned int verifica_X(char romano[], int vezes);
+
+
 
