@@ -3,74 +3,74 @@
 #include <stdio.h>
 #include "gtest/gtest.h"
 
-TEST (Verifica_C, Return_0) { 
+TEST (Verifica_D, Return_0) { 
     
-    char algarismo[] = "C";
+    char algarismo[] = "D";
 
-    EXPECT_EQ (0, verifica_C(algarismo, 1));
+    EXPECT_EQ (0, verifica_D(algarismo, 1));
 }
 
-TEST (Verifica_CLIX, Return_0) { 
+TEST (Verifica_DCLIX, Return_0) { 
     
-    char algarismo[] = "CLIX";
+    char algarismo[] = "DCLIX";
 
-    EXPECT_EQ (0, verifica_C(algarismo, 1));
+    EXPECT_EQ (0, verifica_D(algarismo, 1));
 }
 
-TEST (Verifica_CLXI, Return_0) { 
+TEST (Verifica_DCLXI, Return_0) { 
     
-    char algarismo[] = "CLXI";
+    char algarismo[] = "DCLXI";
 
-    EXPECT_EQ (0, verifica_C(algarismo, 1));
+    EXPECT_EQ (0, verifica_D(algarismo, 1));
 }
 
-TEST (Verifica_CLXII, Return_0) { 
+TEST (Verifica_DCLXII, Return_0) { 
     
-    char algarismo[] = "CLXII";
+    char algarismo[] = "DCLXII";
 
-    EXPECT_EQ (0, verifica_C(algarismo, 1));
+    EXPECT_EQ (0, verifica_D(algarismo, 1));
 }
 
-TEST (Verifica_CLXIII, Return_0) { 
+TEST (Verifica_DCLXIII, Return_0) { 
     
-    char algarismo[] = "CLXIII";
+    char algarismo[] = "DCLXIII";
 
-    EXPECT_EQ (0, verifica_C(algarismo,1 ));
+    EXPECT_EQ (0, verifica_D(algarismo, 1 ));
 }
 
-TEST (Verifica_CXIIII, Return_0) { 
+TEST (Verifica_DCXIIII, Return_0) { 
     
-    char algarismo[] = "CXIIII";
+    char algarismo[] = "DCXIIII";
 
-    EXPECT_EQ (-1, verifica_C(algarismo, 1));
+    EXPECT_EQ (-1, verifica_D(algarismo, 1));
 }
 
-TEST (Verifica_CL, Return_0) { 
+TEST (Verifica_DCL, Return_0) { 
     
-    char algarismo[] = "CL";
+    char algarismo[] = "DCL";
 
-    EXPECT_EQ (0, verifica_C(algarismo, 1));
+    EXPECT_EQ (0, verifica_D(algarismo, 1));
 }
 
-TEST (Verifica_CLX, Return_0) { 
+TEST (Verifica_DCLX, Return_0) { 
     
-    char algarismo[] = "CLX";
+    char algarismo[] = "DCLX";
 
-    EXPECT_EQ (0, verifica_C(algarismo, 1));
+    EXPECT_EQ (0, verifica_D(algarismo, 1));
 }
 
-TEST (Verifica_CLL, Return_0) { 
+TEST (Verifica_DCLL, Return_0) { 
     
-    char algarismo[] = "CLL";
+    char algarismo[] = "DCLL";
 
-    EXPECT_EQ (-1, verifica_C(algarismo, 1));
+    EXPECT_EQ (-1, verifica_D(algarismo, 1));
 }
 
-TEST (Verifica_CLXCC, Return_0) { 
+TEST (Verifica_DCLXCC, Return_0) { 
     
-    char algarismo[] = "CLXCC";
+    char algarismo[] = "DCLXCC";
 
-    EXPECT_EQ (-1, verifica_C(algarismo, 1));
+    EXPECT_EQ (-1, verifica_D(algarismo, 1));
 }
 
 
@@ -79,54 +79,54 @@ TEST (Verifica_CLXCC, Return_0) {
 /*Testes responsável para verificar o retorno correto
     * do resultado da conversão*/
 
-TEST (Converte_C, Return_valor) { 
+TEST (Converte_D, Return_valor) { 
     
-    char algarismo[] = "C";
+    char algarismo[] = "D";
 
-    EXPECT_EQ (100, converte(algarismo));
+    EXPECT_EQ (500, converte(algarismo));
 }
 
-TEST (Converte_CLIX, Return_valor) { 
+TEST (Converte_DCLIX, Return_valor) { 
     
-    char algarismo[] = "CLIX";
+    char algarismo[] = "DCLIX";
 
-    EXPECT_EQ (159, converte(algarismo));
+    EXPECT_EQ (659, converte(algarismo));
 }
 
-TEST (Converte_CLXI, Return_valor) { 
+TEST (Converte_DCLXI, Return_valor) { 
     
-    char algarismo[] = "CLXI";
+    char algarismo[] = "DCLXI";
 
-    EXPECT_EQ (161, converte(algarismo));
+    EXPECT_EQ (661, converte(algarismo));
 }
 
-TEST (Converte_CLXII, Return_valor) { 
+TEST (Converte_DCLXII, Return_valor) { 
     
-    char algarismo[] = "CLXII";
+    char algarismo[] = "DCLXII";
 
-    EXPECT_EQ (162, converte(algarismo));
+    EXPECT_EQ (662, converte(algarismo));
 }
 
-TEST (Converte_CLXIII, Return_valor) { 
+TEST (Converte_DCLXIII, Return_valor) { 
     
-    char algarismo[] = "CLXIII";
+    char algarismo[] = "DCLXIII";
 
-    EXPECT_EQ (163, converte(algarismo));
+    EXPECT_EQ (663, converte(algarismo));
 }
 
-TEST (Converte_LXX, Return_valor) { 
+TEST (Converte_DCLXX, Return_valor) { 
     
-    char algarismo[] = "CLXX";
+    char algarismo[] = "DCLXX";
 
-    EXPECT_EQ (170, converte(algarismo));
+    EXPECT_EQ (670, converte(algarismo));
 }
 
 
-TEST (Converte_CLXXX, Return_valor) { 
+TEST (Converte_DCLXXX, Return_valor) { 
     
-    char algarismo[] = "CLXXX";
+    char algarismo[] = "DCLXXX";
 
-    EXPECT_EQ (180, converte(algarismo));
+    EXPECT_EQ (680, converte(algarismo));
 }
 
 
