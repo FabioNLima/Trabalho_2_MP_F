@@ -964,6 +964,177 @@ unsigned int verifica_D(char romano[], int vezes)
 	return valido;	
 }
 
+
+/*Função que verifica se o algarismo romano 'C' está correto
+	* levando em consideração: M, CM, MC, MM, MMCMLXXXVIII ...
+	* caso as alternativas seja diferentes das apresentada
+	* aparecerá uma mensagem de erro
+	* recebe como paramentro além do vetor
+	* uma variavel inteira*/
+unsigned int verifica_M(char romano[], int vezes)
+{
+	/*Variaveis de incremento*/
+	int i, cont_M = 0, soma = 1;
+
+	/*Variavel reponsável para verificar a validação da expressão
+		* caso seja valido, recebe 0
+		* senão, recebe -1*/
+	int valido = 0;
+	
+	/*Variavel responsavel por verificar
+		* se o algarismo 'M' aceita apenas
+		* essas condições: M, MM, MMM*/
+	int soma_M = 1;   	
+
+	/*Recebe o valor do paramentro da função
+		* que sera somado com a variavel soma_M*/
+	cont_M = vezes;
+
+	/*Vetores auxiliares para realizar a analise
+		* se o seu primeiro elemento corresponde
+		* as condições verdadeiras*/
+	char auxiliar_I[29], auxiliar_V[29], auxiliar_X[29], auxiliar_L[29], auxiliar_C[29], auxiliar_D[29], auxiliar_M[29];
+
+	/*Variavel que conterá a primeira posição
+		* do vetor para ser analisado
+		* se realmente contem o algarismo 'I', 'V', 'X', 'L', 'C', 'D', 'M' e '\0'
+		* ou '\o' que são condições verdadeiras*/
+	char algarismo;
+
+	/*Os vetores auxiliar_I, auxiliar_V e auxiliar_X, auxiliar_L
+		* auxiliar_C, auxiliar_D, auxiliar_M
+		* recebem todos os elementos do vetor romano
+		* a partir da posição 1*/
+	for(i = 0; i < strlen(romano); i++)
+	{		
+		auxiliar_I[i] = romano[i + 1];
+		auxiliar_V[i] = romano[i + 1];
+		auxiliar_X[i] = romano[i + 1];
+		auxiliar_L[i] = romano[i + 1];
+		auxiliar_C[i] = romano[i + 1];
+		auxiliar_D[i] = romano[i + 1];
+		auxiliar_M[i] = romano[i + 1];
+	}
+	
+	/*Verifica a condição para que
+		* o algarismo 'M' não seja digitado
+		* mais de 4 vezes.
+		* condições aceita: 'M'*/
+	if(cont_M > 4)
+	{
+		valido =  -1;
+	}
+	else
+	{
+		valido =  0 ;
+	}		
+
+	
+
+	/*Nesse laço, não precisamos percorrer
+		* todo o vetor, apenas a primeira
+		* e segunda posição*/
+	for(i = 0; i < 1; i++)
+	{
+
+		/*Se a primeira posição for 'M'
+			* entra no laço*/
+		if (romano[i] == 'M')
+		{
+			/*Primeiro incremento para verificar
+				* as condições: M, MM, MMM*/
+			soma_M += cont_M;
+
+			/*Variavel que recebe a proxima posição
+				* do vetor*/	
+			algarismo = romano[i + 1];
+
+			/*Laço que ira analisar as condições
+				* para o que o algarismo esteja 
+				* correto
+				* Nesse caso sera 'I', 'V', 'X', 'L', 'C', 'D', 'M' e '\0'*/
+			switch(algarismo)
+			{
+				case 'I':
+					verifica_I(auxiliar_I);
+					break;
+				case 'V':
+					verifica_V(auxiliar_V);
+					break;
+				case 'X':
+					verifica_X(auxiliar_X, 1);
+					break;
+				case 'L':
+					verifica_L(auxiliar_L, 1);
+					break;
+				case 'C':
+					verifica_C(auxiliar_C, 1);
+					break;
+				case 'D':
+					verifica_D(auxiliar_D, 1);
+				case 'M':
+					/*Mais um incremento*/
+					soma_M++;
+					//printf("%d\n", soma_M );
+					valido = verifica_M(auxiliar_M, soma_M);
+				case '\0':
+					break;
+				default:
+					printf("algarismo invalido");
+			}
+		}
+		/*Senão se a primeira posição for 'I'
+			* entra no laço*/
+		else if(romano[i] == 'I')
+		{
+			valido = verifica_I(romano);
+		}
+
+		/*Senão se a primeira posição for 'V'
+			* entra no laço*/
+		else if(romano[i] == 'V')
+		{
+			valido = verifica_V(romano);
+		}
+
+		/*Senão se a primeira posição for 'X'
+			* entra no laço*/
+		else if(romano[i] == 'X')
+		{
+			valido = verifica_X(romano, 1);
+		}
+
+		/*Senão se a primeira posição for 'L'
+			* entra no laço*/
+		else if(romano[i] == 'L')
+		{
+			valido = verifica_L(romano, 1);
+		}
+
+		/*Senão se a primeira posição for 'C'
+			* entra no laço*/
+		else if(romano[i] == 'C')
+		{
+			valido = verifica_C(romano, 1);
+		}
+
+		/*Senão se a primeira posição for 'D'
+			* entra no laço*/
+		else if(romano[i] == 'D')
+		{
+			valido = verifica_D(romano, 1);
+		}
+
+		/*Senão se algarismo invalido*/
+		else
+		{
+			printf("ERRO INVALIDO\n");
+		}	
+	}
+	printf("%d\n",valido );
+	return valido;
+}
+
 /*
 int main()
 {
