@@ -162,7 +162,7 @@ unsigned int verifica_I(char romano[])
 		* o algarismo esta incorreto*/
 	if(cont == 3 && romano[3] != '\0')
 	{
-		
+		printf("algarismo invalido\n");
 		valido = -1;
 	}
 
@@ -172,7 +172,7 @@ unsigned int verifica_I(char romano[])
 		* o algarismo esta incorreto*/
 	else if(cont == 2 && romano[2] != '\0')
 	{
-		
+		printf("algarismo invalido!\n");
 		/*Apenas valida a expressao*/
 		valido = -1;
 	}
@@ -218,7 +218,7 @@ unsigned int verifica_I(char romano[])
 			* ele entra nesse "else"*/
 		else
 		{	
-			
+			printf("algarismo invalido!\n");
 			/*Apenas valida a expressao*/
 			valido = -1;
 		}
@@ -229,10 +229,97 @@ unsigned int verifica_I(char romano[])
 		* tambpem sera invallido*/
 	else if(cont > 3)
 	{
-		
+		printf("algarismo invalido!\n");
 		/*Apenas valida a expressao*/
 		valido = -1;
 	}
 
 	return valido;
+}
+
+/*Função que verifica se o algarismo romano 'V' está correto
+	* levando em consideração: IV, V, VI, VII, VIII
+	* caso as alternativas seja diferentes das apresentada
+	* aparecerá uma mensagem de erro*/
+unsigned int verifica_V(char romano[])
+{
+	/*Variaveis de incremento*/
+	int i, cont = 0;
+
+	/*Variavel reponsável para verificar a validação da expressão
+		* caso seja valido, recebe 0
+		* senão, recebe -1*/
+	int valido = 0;
+
+	/*Vetor de caracteres que contera
+		* todos os algarismo 'I'
+		* caso seja digitado após o algarismo 'V'*/
+	char auxiliar_I[29];
+
+	/*Variavel que conterá a primeira posição
+		* do vetor para ser analisado
+		* se realmente contem o algarismo 'I'
+		* ou '\o' que são condições verdadeiras*/
+	char algarismo;
+
+
+	/*O vetor auxiliar_I recebe todos
+		* os elementos do vetor romano
+		* a partir da posição 1*/
+	for(i = 0; i < strlen(romano); i++)
+	{
+		auxiliar_I[i] = romano[i + 1];
+	}
+
+	/*Nesse laço, não precisamos percorrer
+		* todo o vetor, apenas a primeira
+		* e segunda posição*/
+	for(i = 0; i < 1; i++)
+	{
+		/*Se a primeira posição for 'V'
+			* entra no laço*/	
+		if(romano[i] == 'V')
+		{
+			/*Variavel que recebe a proxima posição
+				* do vetor*/
+			algarismo = romano[i + 1];
+
+			/*Laço que ira analisar as condições
+				* para o que o algarismo esteja 
+				* correto
+				* Nesse caso sera 'I' e '\0'*/
+			switch(algarismo)
+			{
+				case 'I':
+					valido = verifica_I(auxiliar_I);
+					break;
+				case '\0':
+					break;
+				default:
+					printf("algarismo invalido!");
+					valido = -1;
+			}	
+		}
+		/*Senão se a primeira posição for 'I'
+			* entra no laço*/
+		else if(romano[i] == 'I')
+		{
+			valido = verifica_I(romano);
+		}
+		/*Caso qualquer algarismo que
+			* não seja 'V
+			* está incorreto*/
+		else
+		{
+			printf("algarismo invalido\n");
+
+			/*Apenas valida a expressao*/
+			valido = -1;
+		}
+	}
+
+	/*Retorna valido: se 0 algarismo valido
+		* senão retorna -1*/
+	return valido;
+	
 }
