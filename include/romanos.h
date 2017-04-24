@@ -43,3 +43,11 @@ unsigned int verifica_X(char romano[], int vezes);
 	* recebe como paramentro além do vetor
 	* uma variavel inteira*/
 unsigned int verifica_L(char romano[], int vezes);
+
+/*Função que verifica se o algarismo romano 'C' está correto
+	* levando em consideração: XC, C, CC, CCC, CL, ...
+	* caso as alternativas seja diferentes das apresentada
+	* aparecerá uma mensagem de erro
+	* recebe como paramentro além do vetor
+	* uma variavel inteira*/
+unsigned int verifica_C(char romano[], int vezes);
