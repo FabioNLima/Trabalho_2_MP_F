@@ -7,6 +7,7 @@
 #include "romanos.h"
 
 unsigned int verifica_L(char romano[], int vezes);
+unsigned int verifica_C(char romano[], int vezes);
 
 /*Função que verifica o tamanho do vetor de inteiro*/
 int tam_vet(int *vetor)
@@ -330,7 +331,7 @@ unsigned int verifica_V(char romano[])
 unsigned int verifica_X(char romano[], int vezes)
 {
 	/*Variaveis de incremento*/
-	int i, cont_X = 0, cont_L = 0, contador_C = 0, contador_L = 0;;
+	int i, cont_X = 0, contador_C = 0, contado_L = 0;
 
 	/*Variavel reponsável para verificar a validação da expressão
 		* caso seja valido, recebe 0
@@ -345,12 +346,11 @@ unsigned int verifica_X(char romano[], int vezes)
 	/*Recebe o valor do paramentro da função
 		* que sera somado com a variavel soma_X*/
 	cont_X = vezes;
-	cont_L = vezes;
 
 	/*Vetores auxiliares para realizar a analise
 		* se o seu primeiro elemento corresponde
 		* as condições verdadeiras*/
-	char auxiliar_I[29], auxiliar_V[29], auxiliar_X[29], auxiliar_L[29];
+	char auxiliar_I[29], auxiliar_V[29], auxiliar_X[29];
 	
 	/*Variavel que conterá a primeira posição
 		* do vetor para ser analisado
@@ -366,9 +366,7 @@ unsigned int verifica_X(char romano[], int vezes)
 		auxiliar_I[i] = romano[i + 1];
 		auxiliar_V[i] = romano[i + 1];
 		auxiliar_X[i] = romano[i + 1];
-		auxiliar_L[i] = romano[i + 1];
 	}
-
 
 	/*Como o programa funciona com recursividade e ainda não está terminado
 		* numero maiores que primeiro = 'X'
@@ -382,19 +380,8 @@ unsigned int verifica_X(char romano[], int vezes)
 		}
 		else if(romano[i] == 'L')
 		{
-			contador_L++;
+			contado_L++;
 		}
-	}
-
-
-	/*Verifica a condição para que
-		* o algarismo 'X' não seja digitado
-		* mais de 3 vezes.
-		* condições aceita: 'X', 'XX' e 'XXX'*/
-	if(cont_X > 3)
-	{
-		printf("algarismo invalido XXX \n");
-		valido = -1;
 	}
 
 	/*Nesse laço, não precisamos percorrer
@@ -404,7 +391,6 @@ unsigned int verifica_X(char romano[], int vezes)
 	{
 		/*Se a primeira posição for 'X'
 			* entra no laço*/
-		printf("%c\n\n\n", romano[i]);
 		if(romano[i] == 'X')
 		{
 			/*Variavel que recebe a proxima posição
@@ -428,31 +414,35 @@ unsigned int verifica_X(char romano[], int vezes)
 					valido = verifica_X(auxiliar_X, soma_X);
 					break;
 				case 'L':
-					valido = verifica_L(auxiliar_L,cont_L);
 					break;
 				case 'C':
 					break;
 				case '\0':
 					break;
 				default:
-					printf("algarismo invalido X BREAK\n");
+					printf("algarismo invalido X case");
 					valido = -1;
 			}
 		}
 
-		/*Senão se a primeira posição for 'L'
+		/*Senão se a primeira posição for 'I'
 			* entra no laço*/
-		else if(romano[i] == 'L')
+		else if(romano[i] == 'I')
 		{
-			valido = verifica_L(romano, cont_L);
+			valido = verifica_I(romano);
 		}
-
+		/*Senão se a primeira posição for 'V'
+			* entra no laço*/
+		else if(romano[i] == 'V')
+		{
+			valido = verifica_V(romano);
+		}
 		/*Caso qualquer algarismo digitado que
 			* não seja 'X'
 			* está incorreto*/
 		else
 		{
-			printf("algarismo invalido X UL \n");
+			printf("algarismo invalido X ULT\n");
 			valido = -1;
 		}
 	}
@@ -470,7 +460,7 @@ unsigned int verifica_X(char romano[], int vezes)
 	{
 		valido = -1;
 	}
-	else if(contador_L > 1)
+	else if(contado_L > 1)
 	{
 		valido = -1;
 	}
@@ -479,7 +469,6 @@ unsigned int verifica_X(char romano[], int vezes)
 		* senão retorna -1*/
 	return valido;
 }
-
 
 /*Função que verifica se o algarismo romano 'L' está correto
 	* levando em consideração: XL, L, LX, LXX, LVI...
@@ -541,7 +530,7 @@ unsigned int verifica_L(char romano[], int vezes)
 		* condições aceita: 'L'*/
 	if(cont_L > 1)
 	{
-		printf("algarismo invalido L \n");
+		printf("algarismo invalido L cont\n");
 		valido = -1;
 	}
 
@@ -579,7 +568,7 @@ unsigned int verifica_L(char romano[], int vezes)
 				case '\0':
 					break;
 				default:
-					printf("algarismo invalido L \n");
+					printf("algarismo invalido Lcase \n");
 					valido = -1;
 			}
 		}
@@ -603,9 +592,7 @@ unsigned int verifica_L(char romano[], int vezes)
 			* entra no laço*/
 		else if(romano[i] == 'X')
 		{
-
-			valido = verifica_X(romano,cont_X);
-		
+			valido = verifica_X(romano, cont_X);
 		}
 
 		/*Senão se a primeira posição for 'L'
@@ -620,7 +607,7 @@ unsigned int verifica_L(char romano[], int vezes)
 			* está incorreto*/
 		else
 		{
-			printf("algarismo invalido L \n");
+			printf("algarismo invalido Lul \n");
 			valido = -1;
 		}
 	}
@@ -628,6 +615,162 @@ unsigned int verifica_L(char romano[], int vezes)
 	/*Retorna valido: se 0 algarismo valido
 		* senão retorna -1*/
 	return valido;
+}
+
+/*Função que verifica se o algarismo romano 'C' está correto
+	* levando em consideração: XC, C, CC, CCC, CL, ...
+	* caso as alternativas seja diferentes das apresentada
+	* aparecerá uma mensagem de erro
+	* recebe como paramentro além do vetor
+	* uma variavel inteira*/
+unsigned int verifica_C(char romano[], int vezes)
+{
+	/*Variaveis de incremento*/
+	int i = 0, cont_X = 0, cont_C = 0, cont_M = 0; 
+
+	/*Variavel reponsável para verificar a validação da expressão
+		* caso seja valido, recebe 0
+		* senão, recebe -1*/
+	int valido = 0;
+
+	/*Variavel responsavel por verificar
+		* se o algarismo 'X' aceita apenas
+		* essas condições: X, XX, XXX
+		* e o algarismo 'C' aceita apenas
+		* essas condições: 'C', 'CC' e 'CCC'*/
+	int soma_X = 1, soma_C = 1;
+
+	/*Recebe o valor do paramentro da função
+		* que sera somado com a variavel soma_X
+		* e soma_X*/
+	cont_X = vezes;
+	cont_C = vezes;
+	cont_M = vezes;
+
+	/*Vetores auxiliares para realizar a analise
+		* se o seu primeiro elemento corresponde
+		* as condições verdadeiras*/
+	char auxiliar_I[29], auxiliar_V[29], auxiliar_X[29], auxiliar_L[29], auxiliar_C[29], auxiliar_M[29];
+
+	/*Variavel que conterá a primeira posição
+		* do vetor para ser analisado
+		* se realmente contem o algarismo 'I', 'V', 'X', 'L', 'C', 'M' e '\0'
+		* ou '\o' que são condições verdadeiras*/
+	char algarismo;
+
+	/*Os vetores auxiliar_I, auxiliar_V e auxiliar_X, auxiliar_L
+		* auxiliar_C e auxiliar_M
+		* recebem todos os elementos do vetor romano
+		* a partir da posição 1*/
+	for(i = 0; i < strlen(romano); i++)
+	{		
+		auxiliar_I[i] = romano[i + 1];
+		auxiliar_V[i] = romano[i + 1];
+		auxiliar_X[i] = romano[i + 1];
+		auxiliar_L[i] = romano[i + 1];
+		auxiliar_C[i] = romano[i + 1];
+		auxiliar_M[i] = romano[i + 1];
+	}
+	
+	/*Verifica a condição para que
+		* o algarismo 'C' não seja digitado
+		* mais de 3 vezes.
+		* condições aceita: 'C'*/
+	if(cont_C > 3)
+	{
+		printf("algarismo invalido 100 \n");
+		valido = -1;
+	}
+
+	/*Nesse laço, não precisamos percorrer
+		* todo o vetor, apenas a primeira
+		* e segunda posição*/
+	for(i = 0; i < 1; i++)
+	{
+		/*Se a primeira posição for 'C'
+			* entra no laço*/
+		if (romano[i] == 'C')
+		{
+			/*Variavel que recebe a proxima posição
+				* do vetor*/	
+			algarismo = romano[i + 1];
+
+			/*Laço que ira analisar as condições
+				* para o que o algarismo esteja 
+				* correto
+				* Nesse caso sera 'I', 'V', 'X', 'L', 'C', 'M'e '\0'*/
+			switch(algarismo)
+			{
+				case 'I':
+					valido = verifica_I(auxiliar_I);
+					break;
+				case 'V':
+					valido = verifica_V(auxiliar_V);
+					break;
+				case 'X':
+					//soma_X += cont_X;
+					valido = verifica_X(auxiliar_X, cont_X);
+					break;
+				case 'L':
+					valido = verifica_L(auxiliar_L, 1);
+					break;
+				case 'C':
+					soma_C += cont_C;
+					//printf("%d\n", soma_C);
+					valido = verifica_C(auxiliar_C, soma_C);
+					break;
+				case 'D':
+					break;
+				case 'M':
+					//verifica_M(auxiliar_M, cont_M);
+					break;
+				case '\0':
+					break;
+				default:
+					printf("algarismo invalido C case");
+					valido = -1;
+			}
+		}
+		
+		/*Senão se a primeira posição for 'I'
+			* entra no laço*/
+		else if(romano[i] == 'I')
+		{
+			valido = verifica_I(romano);
+		}
+
+		/*Senão se a primeira posição for 'V'
+			* entra no laço*/
+		else if(romano[i] == 'V')
+		{
+			valido = verifica_V(romano);
+		}
+
+		/*Senão se a primeira posição for 'X'
+			* entra no laço*/
+		else if(romano[i] == 'X')
+		{
+			valido = verifica_X(romano, cont_X);
+		}
+
+		/*Senão se a primeira posição for 'L'
+			* entra no laço*/
+		else if(romano[i] == 'L')
+		{
+			valido = verifica_L(romano, 1);
+		}
+
+		/*Senão se algarismo invalido*/
+		else
+		{
+			printf("ERRO INVALIDO\n");
+			valido = -1;
+		}	
+	}
+
+	/*Retorna valido: se 0 algarismo valido
+		* senão retorna -1*/
+	return valido;	
 }
 
 /*
@@ -642,7 +785,7 @@ int main()
 	printf("Informe os algarismo romanos: ");
 	scanf("%s", algarismo);
 
-	valida_expressao = verifica_L(algarismo, 1);
+	valida_expressao = verifica_C(algarismo, 1);
 
 	if(valida_expressao == -1)
 	{
