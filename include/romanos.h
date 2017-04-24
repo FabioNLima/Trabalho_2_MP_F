@@ -21,6 +21,10 @@ int converte(char romano[]);
 	* aparecerá uma mensagem de erro*/
 unsigned int verifica_I(char romano[]);
 
-
+/*Função que verifica se o algarismo romano 'V' está correto
+	* levando em consideração: IV, V, VI, VII, VIII
+	* caso as alternativas seja diferentes das apresentada
+	* aparecerá uma mensagem de erro*/
+unsigned int verifica_V(char romano[]);
 
 
