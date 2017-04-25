@@ -1,4 +1,6 @@
-/*Programa para converte algarismo Romanos em Indo-Arábico*/
+#ifndef ROMANOS
+#define ROMANOS
+
 
 #include <stdio.h>
 #include <string.h>
@@ -67,3 +69,5 @@ unsigned int verifica_D(char romano[], int vezes);
 	* recebe como paramentro além do vetor
 	* uma variavel inteira*/
 unsigned int verifica_M(char romano[], int vezes);
+
+#endif
