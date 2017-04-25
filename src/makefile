@@ -16,11 +16,6 @@ OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
 $(ODIR)/%.o: %.cc $(DEPS)
 	$(CXX) -c -o $@ $< $(CXXFLAGS) $(LIBS)
 
-main: $(OBJ)
-	$(CXX) $(CXXFLAGS) -o Gerenciador TelaInicial.cpp $(OBJ) $(LIBS)
-
-.PHONY: teste
-
 teste: $(OBJ)
 	$(CXX) -o teste test_romanos.cc $(OBJ) $(CXXFLAGS) $(LIBS) $(LIBS_C)
 
